@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ORDERS</title>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order/order.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+   
+    <div id="wrapper">
+      
+       <header>
+       
+          <h1>Orders :: Add New</h1> 
+         
+        </header>
+     
+        <nav>
+            <ul>                
+                <li><a href="dashboard.html">Home</a></li><br />
+                {% comment %} <li><a href="index.html">Orders </a></li><br /> {% endcomment %}
+                <li><a href="contact.html">contact Us </a></li><br />
+            </ul>
+        </nav>
+        
+        <main>
+            <h2>Order Details</h2>
+            
+            <form method="POST" 
+                action="/sales/create-order/">
+                {% csrf_token %}
+                <lable>Product Name</lable> <input type="text" name="name" id="mySubmit" placeholder="Enter product" />
+                <lable> Quantity</lable><input type="text" name="quantity" id="mySubmit" placeholder=" Enter quantity" />
+                <lable> First Name </lable><input type="text" name="first_name" id="mySubmit" placeholder=" Enter First name" />
+                <lable> Last Name </lable><input type="text" name="last_name" id="mySubmit" placeholder=" Enter Last name" />
+                <lable> Address</lable><input type="text" name="address" id="mySubmit" placeholder=" Enter Address" />
+                <lable>E-mail</lable><input type="text" name="email" id="mySubmit" placeholder=" Enter email"/>
+                <lable>Phone</lable><input type="text" name="myPhone" id="mySubmit"  placeholder=" Enter phone number"/>
+                <lable>Comments</lable>
+                <textarea name="myComments" id="mySubmit" cols="20" rows="2"></textarea>
+                <input type="Submit" value="Save" id="mySubmit" />
+
+            </form>
+
+        </main>
+        <footer>
+            Copyright &copy; 2020 Ericka Clothing<br>
+  
+        </footer>
+    </div>
+</body>
+</html>

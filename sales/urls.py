@@ -9,7 +9,7 @@ from .views import (
 
     CustomerListView,
     ProductListView,
-    OrderListView,
+    order_list,
     DeliveryListView,
 )
 
@@ -21,6 +21,6 @@ urlpatterns = [
 
     path('customer-list/', CustomerListView.as_view(), name='customer-list'),
     path('product-list/', ProductListView.as_view(), name='product-list'),
-    path('order-list/', OrderListView.as_view(), name='order-list'),
+    path('order-list/', order_list, name='order-list'),
     path('delivery-list/', DeliveryListView.as_view(), name='delivery-list'),
 ]

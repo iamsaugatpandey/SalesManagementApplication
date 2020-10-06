@@ -29,11 +29,12 @@ def create_customer(request):
             name = forms.cleaned_data['name']
             address = forms.cleaned_data['address']
             email = forms.cleaned_data['email']
-            username = forms.cleaned_data['username']
+            first_name = forms.cleaned_data['first_name']
+            last_name = forms.cleaned_data['last_name']
             password = forms.cleaned_data['password']
             retype_password = forms.cleaned_data['retype_password']
             if password == retype_password:
-                user = User.objects.create_user(username=username, password=password, email=email, is_customer=True)
+                user = User.objects.create_user(first_name=first_name, last_name=last_name, password=password, email=email, is_customer=True)
                 Customer.objects.create(user=user, name=name, address=address)
                 return redirect('customer-list')
     context = {
@@ -76,25 +77,39 @@ def create_order(request):
         if forms.is_valid():
             customer = forms.cleaned_data['customer']
             product = forms.cleaned_data['product']
+            quantity = forms.cleaned_data['quantity']
+            first_name = forms.cleaned_data['first_name']
+            last_name = forms.cleaned_data['last_name']
+            email = forms.cleaned_data['email']
             Order.objects.create(
                 customer=customer,
                 product=product,
+                quantity=quantity,
                 status='pending'
             )
             return redirect('order-list')
     context = {
         'form': forms
     }
-    return render(request, 'store/create_order.html', context)
+    return render(request, 'order/create_order.html', context)
 
-class OrderListView(ListView):
-    model = Order
-    template_name = 'store/order_list.html'
+def order_list(request):
+    if request.method == 'GET':
+        search = request.GET.get('site_search', 'null')
+        if True: #if search == 'null' 
+            order_list = Order.objects.all().order_by('id')
+        # else:
+        #     product_id = Product.objects.filter(name=search)
+        #     order_list = Order.objects.filter(product=product_id)
+        context = {'order_list': order_list}
+    return render(request, 'order/order_list.html', context)
+    # model = Order
+    # template_name = 'order/order_list.html'
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['order'] = Order.objects.all().order_by('-id')
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['order'] = Order.objects.all().order_by('-id')
+    #     return context
 
 # Delivery views
 @login_required(login_url='login')

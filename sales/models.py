@@ -4,12 +4,14 @@ from users.models import User
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=120, unique=True)
+    first_name = models.CharField(max_length=120, default='Joe')
+    last_name = models.CharField(max_length=120, default='Doe')
+    email = models.CharField(max_length=120, default='jdoe@fashion.com')
     address = models.CharField(max_length=220)
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.first_name + self.last_name
 
 class Product(models.Model):
     name = models.CharField(max_length=120, unique=True)
@@ -27,6 +29,7 @@ class Order(models.Model):
     )
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
     status = models.CharField(max_length=10, choices=STATUS_CHOICE)
     created_date = models.DateField(auto_now_add=True)
 

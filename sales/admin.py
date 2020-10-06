@@ -10,7 +10,7 @@ from .models import (
 )
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['user', 'name', 'address', 'created_date']
+    list_display = ['user', 'first_name', 'last_name', 'address', 'created_date']
 
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Product)
