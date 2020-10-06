@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# IDE files
+.vscode/
+settings.json
+.idea
+
+# For Mac developers to ignore file system info
+.DS_Store
