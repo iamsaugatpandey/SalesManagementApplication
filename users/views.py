@@ -10,7 +10,10 @@ def login_page(request):
         if forms.is_valid():
             username = forms.cleaned_data['username']
             password = forms.cleaned_data['password']
-            return redirect('dashboard')
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('dashboard')
     context = {'form': forms}
     return render(request, 'users/login.html', context)
 
