@@ -3,9 +3,9 @@ from users.models import User
 # Create your models here.
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=120, unique=True)
+    name = models.CharField(max_length=120, unique=True, default='Name')
     address = models.CharField(max_length=220)
+    email_address = models.CharField(max_length=100, default='SOME STRING')
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
