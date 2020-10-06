@@ -26,24 +26,16 @@ def create_customer(request):
     if request.method == 'POST':
         forms = CustomerForm(request.POST)
         if forms.is_valid():
-            name = forms.cleaned_data['name']
-            address = forms.cleaned_data['address']
-            email = forms.cleaned_data['email']
-            username = forms.cleaned_data['username']
-            password = forms.cleaned_data['password']
-            retype_password = forms.cleaned_data['retype_password']
-            if password == retype_password:
-                user = User.objects.create_user(username=username, password=password, email=email, is_customer=True)
-                Customer.objects.create(user=user, name=name, address=address)
-                return redirect('customer-list')
+            forms.save()
+            return redirect('customer-list')
     context = {
         'form': forms
     }
-    return render(request, 'store/create_customer.html', context)
+    return render(request, 'sales/create_customer.html', context)
 
 class CustomerListView(ListView):
     model = Customer
-    template_name = 'store/customer_list.html'
+    template_name = 'sales/customer_list.html'
     context_object_name = 'customer'
 
 # Product views
@@ -58,12 +50,12 @@ def create_product(request):
     context = {
         'form': forms
     }
-    return render(request, 'store/create_product.html', context)
+    return render(request, 'sales/create_product.html', context)
 
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'store/product_list.html'
+    template_name = 'sales/product_list.html'
     context_object_name = 'product'
 
 
@@ -85,11 +77,11 @@ def create_order(request):
     context = {
         'form': forms
     }
-    return render(request, 'store/create_order.html', context)
+    return render(request, 'sales/create_order.html', context)
 
 class OrderListView(ListView):
     model = Order
-    template_name = 'store/order_list.html'
+    template_name = 'sales/order_list.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -108,11 +100,11 @@ def create_delivery(request):
     context = {
         'form': forms
     }
-    return render(request, 'store/create_delivery.html', context)
+    return render(request, 'sales/create_delivery.html', context)
 
 
 class DeliveryListView(ListView):
     model = Delivery
-    template_name = 'store/delivery_list.html'
+    template_name = 'sales/delivery_list.html'
     context_object_name = 'delivery'
 

@@ -9,10 +9,7 @@ from .models import (
     Delivery
 )
 
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['user', 'name', 'address', 'created_date']
-
-admin.site.register(Customer, CustomerAdmin)
+admin.site.register(Customer)
 admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(Delivery)
