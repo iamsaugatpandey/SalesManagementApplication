@@ -98,9 +98,9 @@ def order_list(request):
         search = request.GET.get('site_search', 'null')
         if True: #if search == 'null' 
             order_list = Order.objects.all().order_by('id')
-        # else:
-        #     product_id = Product.objects.filter(name=search)
-        #     order_list = Order.objects.filter(product=product_id)
+        else:
+            product_id = Product.objects.filter(name__contains=str(search))
+            order_list = Order.objects.filter(product=product_id)
         context = {'order_list': order_list}
     return render(request, 'order/order_list.html', context)
     # model = Order

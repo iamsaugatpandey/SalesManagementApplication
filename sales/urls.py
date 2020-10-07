@@ -13,6 +13,7 @@ from .views import (
     DeliveryListView,
 )
 
+app_name = 'sales'
 urlpatterns = [
     path('create-customer/', create_customer, name='create-customer'),
     path('create-product/', create_product, name='create-product'),
