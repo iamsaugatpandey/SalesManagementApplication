@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 
@@ -22,30 +23,27 @@ from .forms import (
 # THIS IS FOR CUSTOMER VIEW
 @login_required(login_url='login')
 def create_customer(request):
-    forms = CustomerForm()
+    context = {}
     if request.method == 'POST':
-        forms = CustomerForm(request.POST)
-        if forms.is_valid():
-            name = forms.cleaned_data['name']
-            address = forms.cleaned_data['address']
-            email = forms.cleaned_data['email']
-            first_name = forms.cleaned_data['first_name']
-            last_name = forms.cleaned_data['last_name']
-            password = forms.cleaned_data['password']
-            retype_password = forms.cleaned_data['retype_password']
-            if password == retype_password:
-                user = User.objects.create_user(first_name=first_name, last_name=last_name, password=password, email=email, is_customer=True)
-                Customer.objects.create(user=user, name=name, address=address)
-                return redirect('customer-list')
-    context = {
-        'form': forms
-    }
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        Customer.objects.create(first_name=first_name, last_name=last_name, address=address, email=email, phone=phone)
+        return redirect('/sales/customer-list')
+
+        # except ObjectDoesNotExist:
+        #     context = {
+        #         'message': "No matching records for email."
+        #     }
+        #     return render(request, 'order/create_order.html', context)
     return render(request, 'customer/create_customer.html', context)
 
 class CustomerListView(ListView):
     model = Customer
     template_name = 'customer/customer_list.html'
-    context_object_name = 'customer'
+    context_object_name = 'customer_list'
 
 # Product views
 @login_required(login_url='login')
@@ -71,26 +69,24 @@ class ProductListView(ListView):
 # Order views
 @login_required(login_url='login')
 def create_order(request):
-    forms = OrderForm()
+    context = {}
     if request.method == 'POST':
-        forms = OrderForm(request.POST)
-        if forms.is_valid():
-            customer = forms.cleaned_data['customer']
-            product = forms.cleaned_data['product']
-            quantity = forms.cleaned_data['quantity']
-            first_name = forms.cleaned_data['first_name']
-            last_name = forms.cleaned_data['last_name']
-            email = forms.cleaned_data['email']
+        try:
+            customer = Customer.objects.get(email__iexact=request.POST.get('email'))
+            product = Product.objects.get(name__iexact=request.POST.get('product'))
+            quantity = request.POST.get('quantity')
             Order.objects.create(
                 customer=customer,
                 product=product,
                 quantity=quantity,
                 status='pending'
             )
-            return redirect('order-list')
-    context = {
-        'form': forms
-    }
+            return redirect('/sales/order-list')
+        except ObjectDoesNotExist:
+            context = {
+                'message': "No matching records for email."
+            }
+            return render(request, 'order/create_order.html', context)
     return render(request, 'order/create_order.html', context)
 
 def order_list(request):

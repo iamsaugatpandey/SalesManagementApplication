@@ -14,7 +14,7 @@
         </header>
         <nav>
             <ul>                
-                <li><a href="newCustomer.html">New Customer</a></li><br />
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li><br />
                 <li><a href="{% url 'sales:customer-list' %}">Customers List</a></li><br />
             </ul>
         </nav>
@@ -24,14 +24,14 @@
             <h3>Information</h3>
             <form method="post"
                   action="/sales/create-customer/">
-
+                {% csrf_token %}
                 <lable>First Name:</lable> <input type="text" name="first_name" id="mySubmit" />
                 <lable>Last Name:</lable><input type="text" name="last_name" id="mySubmit" />
                 <lable>Address:</lable><input type="text" name="address" id="mySubmit" />
                 <lable>E-mail:</lable><input type="text" name="email" id="mySubmit" />
                 <lable>Phone:</lable><input type="text" name="phone" id="mySubmit" />
                 <lable>Comments:</lable>
-                <textarea name="myComments" id="mySubmit" cols="20" rows="2"></textarea>
+                <textarea name="comments" id="mySubmit" cols="20" rows="2"></textarea>
                 <input type="Submit" value="Save" id="mySubmit" />
 
             </form>

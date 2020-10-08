@@ -30,16 +30,16 @@
         <main>
             <h2>Order Details</h2>
             
+            {% if message %}
+            <p>{{message}}</p>
+            {% endif %}
+
             <form method="POST" 
                 action="/sales/create-order/">
                 {% csrf_token %}
-                <lable>Product Name</lable> <input type="text" name="name" id="mySubmit" placeholder="Enter product" />
-                <lable> Quantity</lable><input type="text" name="quantity" id="mySubmit" placeholder=" Enter quantity" />
-                <lable> First Name </lable><input type="text" name="first_name" id="mySubmit" placeholder=" Enter First name" />
-                <lable> Last Name </lable><input type="text" name="last_name" id="mySubmit" placeholder=" Enter Last name" />
-                <lable> Address</lable><input type="text" name="address" id="mySubmit" placeholder=" Enter Address" />
                 <lable>E-mail</lable><input type="text" name="email" id="mySubmit" placeholder=" Enter email"/>
-                <lable>Phone</lable><input type="text" name="myPhone" id="mySubmit"  placeholder=" Enter phone number"/>
+                <lable>Product Name</lable> <input type="text" name="product" id="mySubmit" placeholder="Enter product" />
+                <lable> Quantity</lable><input type="text" name="quantity" id="mySubmit" placeholder=" Enter quantity" />
                 <lable>Comments</lable>
                 <textarea name="myComments" id="mySubmit" cols="20" rows="2"></textarea>
                 <input type="Submit" value="Save" id="mySubmit" />

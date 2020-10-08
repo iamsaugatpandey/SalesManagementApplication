@@ -5,8 +5,9 @@ from users.models import User
 class Customer(models.Model):
     first_name = models.CharField(max_length=120, default='Joe')
     last_name = models.CharField(max_length=120, default='Doe')
-    email = models.CharField(max_length=120, default='jdoe@fashion.com')
+    email = models.CharField(max_length=120, default='jdoe@fashion.com', unique=True)
     address = models.CharField(max_length=220)
+    phone = models.CharField(max_length=10)
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):

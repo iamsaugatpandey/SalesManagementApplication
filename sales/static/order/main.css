@@ -22,7 +22,7 @@ header { background-color: #000033;
 		
 }
 h1 { line-height: 600%;
-    background: url("images/Logo.png");
+    background: url("../images/Logo.png");
      background-position: right;
 	 background-repeat: no-repeat;
 	 padding-left: 40px;

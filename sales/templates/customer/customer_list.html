@@ -14,43 +14,39 @@
         </header>
         <nav>
             <ul>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li><br />
                 <li><a href="{% url 'sales:create-customer' %}">New Customer</a></li><br />
-                <li><a href="customers.html">Customers List</a></li><br />
             </ul>
         </nav>
 
         <main>
             <h2>Customers List</h2>
-            {% if order_list %}
+            {% if customer_list %}
               <table>
 
                 <caption> <h2>Placed Orders</h2></caption>
               <thead>
                 <tr>
-                  <th>Product Id   </th>
-                  <th>product Name   </th>
-                  <th>Quantity</th>
-                  <th>Customer_id</th>
-                  <th>Status</th>
-                  <th>Date</th>
-                  {% comment %} <th>First Name</th>
-                  <th>Last Name</th>
+                  <th>ID</th>
+                  <th>First name</th>
+                  <th>Last Name   </th>
                   <th>Address</th>
                   <th>Email</th>
-                  <th>Phone</th> {% endcomment %}
-
+                  <th>Phone</th> 
+                  <th>Date_Joined</th>
                 </tr>
               </thead>
              <!-- <select id="myDropdown" onchange="filterContent();">-->
                 <tbody>
                   {% for customer in customer_list %}
                     <tr>
-                      <td>{{order.id}}</td>
-                      <td>{{order.product}}</td>
-                      <td>{{order.quantity}}</td>
-                      <td>{{order.customer}}</td>
-                      <td>{{order.status}}</td>
-                      <td>{{order.created_date}}</td>
+                      <td>{{customer.id}}</td>
+                      <td>{{customer.first_name}}</td>
+                      <td>{{customer.last_name}}</td>
+                      <td>{{customer.address}}</td>
+                      <td>{{customer.email}}</td>
+                      <td>{{customer.phone}}</td>
+                      <td>{{customer.created_date}}</td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -60,7 +56,7 @@
                 </tbody>
               </table>
             {% else %}
-                <p>No orders yet.</p>
+                <p>No customer listed.</p>
             {% endif %}
         </main>
         <footer>
