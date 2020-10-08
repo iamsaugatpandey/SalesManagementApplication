@@ -40,11 +40,11 @@ def create_customer(request):
     context = {
         'form': forms
     }
-    return render(request, 'store/create_customer.html', context)
+    return render(request, 'customer/create_customer.html', context)
 
 class CustomerListView(ListView):
     model = Customer
-    template_name = 'store/customer_list.html'
+    template_name = 'customer/customer_list.html'
     context_object_name = 'customer'
 
 # Product views
@@ -52,19 +52,19 @@ class CustomerListView(ListView):
 def create_product(request):
     forms = ProductForm()
     if request.method == 'POST':
-        forms = ProductForm(request.POST)
+        forms = ProsuctForm(request.POST)
         if forms.is_valid():
             forms.save()
             return redirect('product-list')
     context = {
         'form': forms
     }
-    return render(request, 'store/create_product.html', context)
+    return render(request, 'product/create_product.html', context)
 
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'store/product_list.html'
+    template_name = 'product/product_list.html'
     context_object_name = 'product'
 
 

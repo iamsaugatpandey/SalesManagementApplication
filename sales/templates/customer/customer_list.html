@@ -1,43 +1,27 @@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ORDERS</title>
+    <title>Customers page</title>
     <meta charset="utf-8">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'order/main.css' %}">
-    <script>
-      
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'customer/customer.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 </head>
 <body>
-    
     <div id="wrapper">
-       <header>
-        
-            <h1>Orders List</h1> 
-            
+        <header>
+            <h1>Customers :: List</h1>
         </header>
-      
         <nav>
-            <ul>                
-                <li><a href="Dashboard.html">Home</a></li><br />
-                <li><a href="{% url 'sales:create-order' %}">Add Orders</a></li><br />
-                <li><a href="contact.html">contact Us</a></li><br />
-                
-
+            <ul>
+                <li><a href="{% url 'sales:create-customer' %}">New Customer</a></li><br />
+                <li><a href="customers.html">Customers List</a></li><br />
             </ul>
         </nav>
-        
+
         <main>
-           
-            
-            <form method="GET"
-                  action="/sales/order-list">
-                  <label for="site_search">Search Orders:</label><input type="search" id="site_search" name="site_search"
-                         aria-label="Search through site content">  </form>
-              {% if order_list %}
+            <h2>Customers List</h2>
+            {% if order_list %}
               <table>
 
                 <caption> <h2>Placed Orders</h2></caption>
@@ -59,7 +43,7 @@
               </thead>
              <!-- <select id="myDropdown" onchange="filterContent();">-->
                 <tbody>
-                  {% for order in order_list %}
+                  {% for customer in customer_list %}
                     <tr>
                       <td>{{order.id}}</td>
                       <td>{{order.product}}</td>
@@ -75,15 +59,13 @@
                   {% endfor %}
                 </tbody>
               </table>
-              {% endif %}
-              
-
-           
-
+            {% else %}
+                <p>No orders yet.</p>
+            {% endif %}
         </main>
         <footer>
-            Copyright &copy; 2020 Ericka Clothing<br>
-  
+            Copyright &copy; 2020 Ky Oh<br>
+            <a href="ohk@beloit.edu">ohk@beloit.edu</a>
         </footer>
     </div>
 </body>
