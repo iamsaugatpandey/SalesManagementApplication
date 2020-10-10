@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %} {% block title %}Create Product{% endblock title %} {% block breadcrumbs %}
+{% extends 'base/base.html' %} {% block title %}Create Vendor{% endblock title %} {% block breadcrumbs %}
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
         <div class="row m-0">
@@ -14,7 +14,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Product</a></li>
+                            <li><a href="#">Vendor</a></li>
                             <li class="active">Create</li>
                         </ol>
                     </div>
@@ -28,7 +28,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Create Product</strong>
+                <strong class="card-title">Create Vendor</strong>
             </div>
             <div class="card-body">
                 <!-- Credit Card -->
@@ -37,20 +37,17 @@
                         <form action="#" method="post" novalidate="novalidate">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="name" class="control-label mb-1">Name</label> {{ form.name }}
+                                <label for="name" class="control-label mb-1">Name</label> {{ form.vendor_name }}
                             </div>
                             <div class="form-group">
-                                <label for="vendor" class="control-label mb-1">Vendor</label> {{ form.vendor }}
+                                <label for="vendor" class="control-label mb-1">Website</label> {{ form.website }}
                             </div>
                             <div class="form-group">
-                                <label for="color" class="control-label mb-1">Color</label> {{ form.color }}
-                            </div>
-                            <div class="form-group">
-                                <label for="sortno" class="control-label mb-1">Quantity</label> {{ form.quantity }}
+                                <label for="color" class="control-label mb-1">Phone</label> {{ form.phone }}
                             </div>
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                    <span id="payment-button-amount">Create Product</span>
+                                    <span id="payment-button-amount">Create Vendor</span>
                                 </button>
                             </div>
                         </form>

@@ -9,14 +9,16 @@ from .models import (
     Customer,
     Product,
     Order,
-    Delivery
+    Delivery,
+    Vendor
 )
 
 from .forms import (
     CustomerForm,
     ProductForm,
     OrderForm,
-    DeliveryForm
+    DeliveryForm, 
+    VendorForm
 )
 
 # THIS IS FOR CUSTOMER VIEW
@@ -45,6 +47,7 @@ def create_product(request):
     if request.method == 'POST':
         forms = ProductForm(request.POST)
         if forms.is_valid():
+            vendor = forms.cleaned_data['vendor']
             forms.save()
             return redirect('product-list')
     context = {
@@ -108,3 +111,21 @@ class DeliveryListView(ListView):
     template_name = 'sales/delivery_list.html'
     context_object_name = 'delivery'
 
+
+@login_required(login_url='login')
+def create_vendor(request):
+    forms = VendorForm()
+    if request.method == 'POST':
+        forms = VendorForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('vendor-list')
+    context = {
+        'form': forms
+    }
+    return render(request, 'sales/create_vendor.html', context)
+
+class VendorListView(ListView):
+    model = Vendor
+    template_name = 'sales/vendor_list.html'
+    context_object_name = 'vendor'

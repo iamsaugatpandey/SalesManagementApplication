@@ -6,10 +6,12 @@ from .models import (
     Customer, 
     Product, 
     Order, 
-    Delivery
+    Delivery, 
+    Vendor
 )
 
 admin.site.register(Customer)
 admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(Delivery)
+admin.site.register(Vendor)

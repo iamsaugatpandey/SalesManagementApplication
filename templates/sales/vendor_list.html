@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %} {% block title %}Delivery List{% endblock title %} {% block breadcrumbs %}
+{% extends 'base/base.html' %} {% block title %}Vendor List{% endblock title %} {% block breadcrumbs %}
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
         <div class="row m-0">
@@ -14,7 +14,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Delivery</a></li>
+                            <li><a href="#">Vendor</a></li>
                             <li class="active">List</li>
                         </ol>
                     </div>
@@ -28,7 +28,7 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="box-title">Delivery List </h4>
+                <h4 class="box-title">Vendor List </h4>
             </div>
             <div class="card-body--">
                 <div class="table-stats order-table ov-h">
@@ -36,24 +36,24 @@
                         <thead>
                             <tr>
                                 <th class="serial">#</th>
-                                <th>Order</th>
-                                <th>Courier Name</th>
-                                <th>Pickup Person</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% if delivery %} {% for delivery in delivery %}
+                            {% if vendor %} {% for vendor in vendor %}
                             <tr>
                                 <td class="serial">{{ forloop.counter }}</td>
-                                <td>{{ delivery.order }}</td>
-                                <td>{{ delivery.courier_name }}</td>
-                                <td>{{ delivery.pickup_name }}</td>
-                                <td>{{ delivery.created_date }}</td>
+                                <td>{{ vendor.vendor_name }}</td>
+                                <td>{{ vendor.phone }}</td>
+                                <td>{{ vendor.website }}</td>
+                                <td>{{ vendor.created_date }}</td>
                             </tr>
                             {% endfor %} {% else %}
                             <tr>
-                                <td>No Delivery Data</td>
+                                <td>No Vendor Data</td>
                             </tr>
                             {% endif %}
                         </tbody>
