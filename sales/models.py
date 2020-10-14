@@ -36,7 +36,7 @@ class Order(models.Model):
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 class Delivery(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

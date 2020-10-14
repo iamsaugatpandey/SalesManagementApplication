@@ -61,7 +61,7 @@ def create_product(request):
         forms = ProductForm(request.POST)
         if forms.is_valid():
             forms.save()
-            return redirect('product-list')
+            return redirect('/sales/product-list')
     context = {
         'form': forms
     }
@@ -90,7 +90,7 @@ def create_order(request):
                 quantity = quantity,
                 status='pending'
             )
-            return redirect('order-list')
+            return redirect('/sales/order-list')
     context = {
         'form': forms
     }
@@ -117,7 +117,7 @@ def create_delivery(request):
         forms = DeliveryForm(request.POST)
         if forms.is_valid():
             forms.save()
-            return redirect('delivery-list')
+            return redirect('/sales/delivery-list')
     context = {
         'form': forms
     }
@@ -137,7 +137,7 @@ def create_vendor(request):
         forms = VendorForm(request.POST)
         if forms.is_valid():
             forms.save()
-            return redirect('vendor-list')
+            return redirect('/sales/vendor-list')
     context = {
         'form': forms
     }
