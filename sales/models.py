@@ -11,12 +11,14 @@ class Customer(models.Model):
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.first_name + self.last_name
+        return self.first_name + " " + self.last_name
 
 class Product(models.Model):
     name = models.CharField(max_length=120, unique=True)
-    sortno = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()
+    color = models.CharField(max_length=120,default='unknown')
     created_date = models.DateField(auto_now_add=True)
+    vendor = models.ForeignKey('Vendor', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -34,12 +36,22 @@ class Order(models.Model):
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.product.name
+        return self.id
 
 class Delivery(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    pickup_in_person = models.BooleanField(default=True)
     courier_name = models.CharField(max_length=120)
+    pickup_name = models.CharField(max_length=100, default='Mary Howl')
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.courier_name
+
+class Vendor(models.Model):
+    vendor_name = models.CharField(max_length=100, unique=True)
+    phone = models.CharField(max_length=10, unique=True)
+    website = models.URLField(max_length=200, unique=True)
+
+    def __str__(self):
+        return self.vendor_name

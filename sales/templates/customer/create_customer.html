@@ -4,7 +4,7 @@
     <title>Customers page</title>
     <meta charset="utf-8">
     {% load static %}
-    <link href="{% static 'customer/customer.css' %}" rel="stylesheet">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -25,15 +25,8 @@
             <form method="post"
                   action="/sales/create-customer/">
                 {% csrf_token %}
-                <lable>First Name:</lable> <input type="text" name="first_name" id="mySubmit" />
-                <lable>Last Name:</lable><input type="text" name="last_name" id="mySubmit" />
-                <lable>Address:</lable><input type="text" name="address" id="mySubmit" />
-                <lable>E-mail:</lable><input type="text" name="email" id="mySubmit" />
-                <lable>Phone:</lable><input type="text" name="phone" id="mySubmit" />
-                <lable>Comments:</lable>
-                <textarea name="comments" id="mySubmit" cols="20" rows="2"></textarea>
+                {{form}}
                 <input type="Submit" value="Save" id="mySubmit" />
-
             </form>
 
         </main>

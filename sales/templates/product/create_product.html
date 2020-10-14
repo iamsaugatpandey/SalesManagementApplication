@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products Page</title>
+    <meta charset="utf-8">
+    {% load static %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>Products :: List</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li><br />
+                <li><a href="AddProduct.html">New Product</a></li><br />
+            </ul>
+        </nav>
+
+        <main>
+            <h2>Products List</h2>
+             <form method="post"
+                  action="/sales/create-product/">
+                {% csrf_token %}
+                {{form}}
+                <input type="Submit" value="Save" id="mySubmit" />
+            </form>
+        </main>
+    </div>
+</body>
+</html>

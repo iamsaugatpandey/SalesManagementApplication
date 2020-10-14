@@ -10,34 +10,42 @@ from .models import (
     Customer,
     Product,
     Order,
-    Delivery
+    Delivery,
+    Vendor
 )
 
 from .forms import (
     CustomerForm,
     ProductForm,
     OrderForm,
-    DeliveryForm
+    DeliveryForm,
+    VendorForm
 )
 
 # THIS IS FOR CUSTOMER VIEW
 @login_required(login_url='login')
 def create_customer(request):
-    context = {}
+    forms = CustomerForm()
     if request.method == 'POST':
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        address = request.POST.get('address')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        Customer.objects.create(first_name=first_name, last_name=last_name, address=address, email=email, phone=phone)
-        return redirect('/sales/customer-list')
-
-        # except ObjectDoesNotExist:
-        #     context = {
-        #         'message': "No matching records for email."
-        #     }
-        #     return render(request, 'order/create_order.html', context)
+        forms = CustomerForm(request.POST)
+        if forms.is_valid():
+            first_name = forms.cleaned_data['first_name']
+            last_name = forms.cleaned_data['last_name']
+            address = forms.cleaned_data['address']
+            email = forms.cleaned_data['email']
+            phone = forms.cleaned_data['phone']
+            
+            Customer.objects.create(
+                first_name=first_name, 
+                last_name=last_name, 
+                address=address, 
+                email=email, 
+                phone=phone
+                )
+            return redirect('/sales/customer-list')
+    context = {
+        'form': forms
+    }
     return render(request, 'customer/create_customer.html', context)
 
 class CustomerListView(ListView):
@@ -50,7 +58,7 @@ class CustomerListView(ListView):
 def create_product(request):
     forms = ProductForm()
     if request.method == 'POST':
-        forms = ProsuctForm(request.POST)
+        forms = ProductForm(request.POST)
         if forms.is_valid():
             forms.save()
             return redirect('product-list')
@@ -69,34 +77,28 @@ class ProductListView(ListView):
 # Order views
 @login_required(login_url='login')
 def create_order(request):
-    context = {}
+    forms = OrderForm()
     if request.method == 'POST':
-        try:
-            customer = Customer.objects.get(email__iexact=request.POST.get('email'))
-            product = Product.objects.get(name__iexact=request.POST.get('product'))
-            quantity = request.POST.get('quantity')
+        forms = OrderForm(request.POST)
+        if forms.is_valid():
+            customer = forms.cleaned_data['customer']
+            product = forms.cleaned_data['product']
+            quantity = forms.cleaned_data['quantity']
             Order.objects.create(
                 customer=customer,
                 product=product,
-                quantity=quantity,
+                quantity = quantity,
                 status='pending'
             )
-            return redirect('/sales/order-list')
-        except ObjectDoesNotExist:
-            context = {
-                'message': "No matching records for email."
-            }
-            return render(request, 'order/create_order.html', context)
+            return redirect('order-list')
+    context = {
+        'form': forms
+    }
     return render(request, 'order/create_order.html', context)
 
 def order_list(request):
     if request.method == 'GET':
-        search = request.GET.get('site_search', 'null')
-        if True: #if search == 'null' 
-            order_list = Order.objects.all().order_by('id')
-        else:
-            product_id = Product.objects.filter(name__contains=str(search))
-            order_list = Order.objects.filter(product=product_id)
+        order_list = Order.objects.all().order_by('id')
         context = {'order_list': order_list}
     return render(request, 'order/order_list.html', context)
     # model = Order

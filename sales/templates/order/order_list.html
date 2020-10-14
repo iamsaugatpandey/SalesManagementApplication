@@ -5,7 +5,7 @@
     <title>ORDERS</title>
     <meta charset="utf-8">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'order/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <script>
       
     </script>
@@ -67,14 +67,12 @@
                       <td>{{order.customer}}</td>
                       <td>{{order.status}}</td>
                       <td>{{order.created_date}}</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
                     </tr>
                   {% endfor %}
                 </tbody>
               </table>
+              {% else %}
+                <p>No orders on record.</p>
               {% endif %}
               
 

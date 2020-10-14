@@ -5,7 +5,7 @@
     <title>ORDERS</title>
     <meta charset="utf-8">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'order/order.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -37,13 +37,14 @@
             <form method="POST" 
                 action="/sales/create-order/">
                 {% csrf_token %}
-                <lable>E-mail</lable><input type="text" name="email" id="mySubmit" placeholder=" Enter email"/>
+                {% comment %} <lable>E-mail</lable><input type="text" name="email" id="mySubmit" placeholder=" Enter email"/>
                 <lable>Product Name</lable> <input type="text" name="product" id="mySubmit" placeholder="Enter product" />
                 <lable> Quantity</lable><input type="text" name="quantity" id="mySubmit" placeholder=" Enter quantity" />
                 <lable>Comments</lable>
                 <textarea name="myComments" id="mySubmit" cols="20" rows="2"></textarea>
+                <input type="Submit" value="Save" id="mySubmit" /> {% endcomment %}
+                {{form}}
                 <input type="Submit" value="Save" id="mySubmit" />
-
             </form>
 
         </main>
