@@ -71,7 +71,7 @@ def create_product(request):
 class ProductListView(ListView):
     model = Product
     template_name = 'product/product_list.html'
-    context_object_name = 'product'
+    context_object_name = 'product_list'
 
 
 # Order views
@@ -121,11 +121,30 @@ def create_delivery(request):
     context = {
         'form': forms
     }
-    return render(request, 'store/create_delivery.html', context)
+    return render(request, 'delivery/create_delivery.html', context)
 
 
 class DeliveryListView(ListView):
     model = Delivery
-    template_name = 'store/delivery_list.html'
-    context_object_name = 'delivery'
+    template_name = 'sales/delivery_list.html'
+    context_object_name = 'delivery_list'
 
+# Vendor views
+@login_required(login_url='login')
+def create_vendor(request):
+    forms = VendorForm()
+    if request.method == 'POST':
+        forms = VendorForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('vendor-list')
+    context = {
+        'form': forms
+    }
+    return render(request, 'vendor/create_vendor.html', context)
+
+
+class VendorListView(ListView):
+    model = Vendor
+    template_name = 'vendor/vendor_list.html'
+    context_object_name = 'vendor_list'
