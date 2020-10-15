@@ -126,7 +126,7 @@ def create_delivery(request):
 
 class DeliveryListView(ListView):
     model = Delivery
-    template_name = 'sales/delivery_list.html'
+    template_name = 'delivery/delivery_list.html'
     context_object_name = 'delivery_list'
 
 # Vendor views

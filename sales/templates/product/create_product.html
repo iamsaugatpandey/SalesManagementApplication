@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Products Page</title>
+    <title>New Product</title>
     <meta charset="utf-8">
     {% load static %}
     <link href="{% static 'style.css' %}" rel="stylesheet">
@@ -10,17 +10,17 @@
 <body>
     <div id="wrapper">
         <header>
-            <h1>Products :: List</h1>
+            <h1>Products :: Add New</h1>
         </header>
         <nav>
             <ul>
                 <li><a href="{% url 'dashboard' %}">Dashboard</a></li><br />
-                <li><a href="AddProduct.html">New Product</a></li><br />
+                <li><a href="/sales/product-list">Products</a></li><br />
             </ul>
         </nav>
 
         <main>
-            <h2>Products List</h2>
+            <h2>Product Details</h2>
              <form method="post"
                   action="/sales/create-product/">
                 {% csrf_token %}

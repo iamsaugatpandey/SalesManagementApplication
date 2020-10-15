@@ -7,7 +7,9 @@ from .models import (
     Product, 
     Order, 
     Delivery,
-    Vendor
+    Vendor,
+    Type,
+    Color
 )
 
 class CustomerAdmin(admin.ModelAdmin):
@@ -18,3 +20,5 @@ admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(Delivery)
 admin.site.register(Vendor)
+admin.site.register(Type)
+admin.site.register(Color)

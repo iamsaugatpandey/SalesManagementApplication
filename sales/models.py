@@ -16,12 +16,28 @@ class Customer(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=120, unique=True)
     quantity = models.PositiveIntegerField()
-    color = models.CharField(max_length=120,default='unknown')
+    product_type = models.ForeignKey('Type', on_delete=models.CASCADE)
+    color = models.ForeignKey('Color', on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
+    price = models.PositiveIntegerField(default=1)
     vendor = models.ForeignKey('Vendor', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
+class Type(models.Model):
+    type_name = models.CharField(max_length=50, unique=True)
+    created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.type_name
+
+class Color(models.Model):
+    color_name = models.CharField(max_length=50, unique=True)
+    created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.color_name
 
 class Order(models.Model):
     STATUS_CHOICE = (

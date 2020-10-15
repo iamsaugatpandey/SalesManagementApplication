@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Customer, Product, Order, Delivery, Vendor
+from .models import Customer, Product, Order, Delivery, Vendor, Type, Color
 
 class CustomerForm(forms.ModelForm):
     class Meta:
@@ -44,12 +44,30 @@ class CustomerForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'quantity', 'vendor', 'color']
+        fields = ['name', 'price', 'quantity', 'vendor', 'color']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control', 'id': 'price'}),
+            'type': forms.Select(attrs={'class': 'form-control', 'id': 'type'}),
             'quantity': forms.NumberInput(attrs={'class': 'form-control', 'id': 'quantity'}),
             'vendor': forms.Select(attrs={'class': 'form-control', 'id': 'vendor'}),
-            'color': forms.TextInput(attrs={'class': 'form-control', 'id': 'color'}), 
+            'color': forms.TextInput(attrs={'class': 'form-control', 'id': 'color'})
+        }
+
+class TypeForm(forms.ModelForm):
+    class Meta:
+        model = Type
+        fields = ['type_name']
+        widgets = {
+            'type_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'type_name'})
+        }
+
+class ColorForm(forms.ModelForm):
+    class Meta:
+        model = Color
+        fields = ['color_name']
+        widgets = {
+            'color_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'color_name'})
         }
 
 class OrderForm(forms.ModelForm):

@@ -32,11 +32,11 @@
         <main>
            
             
-            <form method="GET"
+            {% comment %} <form method="GET"
                   action="/sales/order-list">
                   <label for="site_search">Search Orders:</label><input type="search" id="site_search" name="site_search"
-                         aria-label="Search through site content">  </form>
-              {% if deliveries_list %}
+                         aria-label="Search through site content">  </form> {% endcomment %}
+              {% if delivery_list %}
               <table>
 
                 <caption> <h2>Unfinished Deliveries</h2></caption>
@@ -53,9 +53,9 @@
               </thead>
              <!-- <select id="myDropdown" onchange="filterContent();">-->
                 <tbody>
-                  {% for order in order_list %}
+                  {% for delivery in delivery_list %}
                     <tr>
-                      <td>{{order.id}}</td>
+                      <td>{{delivery.id}}</td>
                       <td>{{order.product}}</td>
                       <td>{{order.quantity}}</td>
                       <td>{{order.customer}}</td>
