@@ -46,9 +46,10 @@
                   <th>Order Id   </th>
                   <th>Product Name   </th>
                   <th>Quantity</th>
-                  <th>Customer_id</th>
+                  <th>Customer</th>
                   <th>Status</th>
                   <th>Date</th>
+                  <th>Delivery</th>
 
                 </tr>
               </thead>
@@ -61,6 +62,7 @@
                       <td>{{order.customer}}</td>
                       <td>{{order.status}}</td>
                       <td>{{order.created_date}}</td>
+                      <td><a href="/sales/create-delivery/{{ order.id }}/">Initiate Delivery</td>
                     </tr>
                   {% endfor %}
                 </tbody>

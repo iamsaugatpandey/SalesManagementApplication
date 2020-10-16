@@ -19,7 +19,7 @@ class Product(models.Model):
     product_type = models.ForeignKey('Type', on_delete=models.CASCADE)
     color = models.ForeignKey('Color', on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
-    price = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     vendor = models.ForeignKey('Vendor', on_delete=models.CASCADE)
 
     def __str__(self):

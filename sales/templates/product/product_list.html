@@ -39,11 +39,11 @@
                     <tr>
                       <td>{{product.id}}</td>
                       <td>{{product.name}}</td>
-                      <td>{{product.type}}</td>
+                      <td>{{product.product_type}}</td>
                       <td>{{product.color}}</td>
                       <td>{{product.quantity}}</td>
                       <td>{{product.price}}</td>
-                      <td>{{order.created_date}}</td>
+                      <td>{{product.created_date}}</td>
                     </tr>
                   {% endfor %}
                 </tbody>    
@@ -52,6 +52,9 @@
                 <p>No product on record.</p>
             {% endif %}
         </main>
+        <footer>
+            Copyright &copy; 2020 Ericka Clothing<br>
+        </footer>
     </div>
 </body>
 </html>

@@ -111,15 +111,19 @@ def order_list(request):
 
 # Delivery views
 @login_required(login_url='login')
-def create_delivery(request):
+def create_delivery(request, order_id):
     forms = DeliveryForm()
     if request.method == 'POST':
         forms = DeliveryForm(request.POST)
         if forms.is_valid():
-            forms.save()
+            delivery = forms.save(commit=False)
+            delivery.order = Order.objects.get(id=order_id)
+            delivery.save()
             return redirect('/sales/delivery-list')
+    order = Order.objects.get(id=order_id)
     context = {
-        'form': forms
+        'order': order,
+        'form': forms,
     }
     return render(request, 'delivery/create_delivery.html', context)
 

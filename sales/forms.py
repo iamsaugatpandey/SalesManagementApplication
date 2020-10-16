@@ -44,14 +44,14 @@ class CustomerForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'price', 'quantity', 'vendor', 'color']
+        fields = ['name', 'price', 'product_type', 'quantity', 'vendor', 'color']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'id': 'price'}),
-            'type': forms.Select(attrs={'class': 'form-control', 'id': 'type'}),
+            'product_type': forms.Select(attrs={'class': 'form-control', 'id': 'type'}),
             'quantity': forms.NumberInput(attrs={'class': 'form-control', 'id': 'quantity'}),
             'vendor': forms.Select(attrs={'class': 'form-control', 'id': 'vendor'}),
-            'color': forms.TextInput(attrs={'class': 'form-control', 'id': 'color'})
+            'color': forms.Select(attrs={'class': 'form-control', 'id': 'color'})
         }
 
 class TypeForm(forms.ModelForm):

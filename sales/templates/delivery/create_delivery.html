@@ -33,16 +33,35 @@
             {% if message %}
             <p>{{message}}</p>
             {% endif %}
+            
+              <table>
+                <caption> <h2>Initiate Delivery for the Following Order:</h2></caption>
+              <thead>
+                <tr>
+                  <th>Order Id   </th>
+                  <th>Product Name   </th>
+                  <th>Quantity</th>
+                  <th>Customer</th>
+                  <th>Status</th>
+                  <th>Date</th>
+
+                </tr>
+              </thead>
+                <tbody>
+                    <tr>
+                      <td>{{order.id}}</td>
+                      <td>{{order.product}}</td>
+                      <td>{{order.quantity}}</td>
+                      <td>{{order.customer}}</td>
+                      <td>{{order.status}}</td>
+                      <td>{{order.created_date}}</td>
+                    </tr>
+                </tbody>
+              </table>
 
             <form method="POST" 
-                action="/sales/create-order/">
+                action="/sales/create-delivery/{{order.id}}/">
                 {% csrf_token %}
-                {% comment %} <lable>E-mail</lable><input type="text" name="email" id="mySubmit" placeholder=" Enter email"/>
-                <lable>Product Name</lable> <input type="text" name="product" id="mySubmit" placeholder="Enter product" />
-                <lable> Quantity</lable><input type="text" name="quantity" id="mySubmit" placeholder=" Enter quantity" />
-                <lable>Comments</lable>
-                <textarea name="myComments" id="mySubmit" cols="20" rows="2"></textarea>
-                <input type="Submit" value="Save" id="mySubmit" /> {% endcomment %}
                 {{form}}
                 <input type="Submit" value="Save" id="mySubmit" />
             </form>

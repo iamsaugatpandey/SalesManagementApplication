@@ -15,6 +15,14 @@
                 </li>
 
                 <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Vendor</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-id-card-o"></i><a href="{% url 'sales:create-vendor' %}">Add</a></li>
+                        <li><i class="fa fa-th"></i><a href="{% url 'sales:vendor-list' %}">View</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Product</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-id-card-o"></i><a href="{% url 'sales:create-product' %}">Add</a></li>
@@ -32,7 +40,6 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-chevron-circle-down"></i>Delivery</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-id-card-o"></i><a href="{% url 'sales:create-delivery' %}">Add</a></li>
                         <li><i class="fa fa-th"></i><a href="{% url 'sales:delivery-list' %}">View</a></li>
                     </ul>
                 </li>

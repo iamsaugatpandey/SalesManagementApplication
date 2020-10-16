@@ -16,38 +16,30 @@
     <div id="wrapper">
        <header>
         
-            <h1>Delivery List</h1> 
+            <h1>Deliveries</h1> 
             
         </header>
       
         <nav>
             <ul>                
                 <li><a href="{% url 'dashboard' %}">Dashboard</a></li><br />
-                <li><a href="{% url 'sales:create-delivery' %}">Add Orders</a></li><br />
                 <li><a href="contact.html">contact Us</a></li><br />
                 
             </ul>
         </nav>
         
         <main>
-           
-            
-            {% comment %} <form method="GET"
-                  action="/sales/order-list">
-                  <label for="site_search">Search Orders:</label><input type="search" id="site_search" name="site_search"
-                         aria-label="Search through site content">  </form> {% endcomment %}
               {% if delivery_list %}
               <table>
 
                 <caption> <h2>Unfinished Deliveries</h2></caption>
               <thead>
                 <tr>
-                  <th>Product Id   </th>
-                  <th>product Name   </th>
-                  <th>Quantity</th>
-                  <th>Customer_id</th>
-                  <th>Status</th>
-                  <th>Date</th>
+                  <th>Order Id   </th>
+                  <th>In-person Pickup?</th>
+                  <th>Courier Name</th>
+                  <th>Pickup Name</th>
+                  <th>Ready from Date</th>
 
                 </tr>
               </thead>
@@ -56,17 +48,16 @@
                   {% for delivery in delivery_list %}
                     <tr>
                       <td>{{delivery.id}}</td>
-                      <td>{{order.product}}</td>
-                      <td>{{order.quantity}}</td>
-                      <td>{{order.customer}}</td>
-                      <td>{{order.status}}</td>
-                      <td>{{order.created_date}}</td>
+                      <td>{{delivery.pickup_in_person}}</td>
+                      <td>{{delivery.courier_name}}</td>
+                      <td>{{delivery.pickup_name}}</td>
+                      <td>{{delivery.created_date}}</td>
                     </tr>
                   {% endfor %}
                 </tbody>
               </table>
               {% else %}
-                <p>No orders on record.</p>
+                <p>No pending deliveries on record.</p>
               {% endif %}
               
 
@@ -75,7 +66,6 @@
         </main>
         <footer>
             Copyright &copy; 2020 Ericka Clothing<br>
-  
         </footer>
     </div>
 </body>
