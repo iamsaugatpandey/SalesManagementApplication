@@ -35,7 +35,7 @@
                 <caption> <h2>Unfinished Deliveries</h2></caption>
               <thead>
                 <tr>
-                  <th>Order Id   </th>
+                  <th>Order Id </th>
                   <th>In-person Pickup?</th>
                   <th>Courier Name</th>
                   <th>Pickup Name</th>
@@ -47,7 +47,7 @@
                 <tbody>
                   {% for delivery in delivery_list %}
                     <tr>
-                      <td>{{delivery.id}}</td>
+                      <td>{{delivery.order}}</td>
                       <td>{{delivery.pickup_in_person}}</td>
                       <td>{{delivery.courier_name}}</td>
                       <td>{{delivery.pickup_name}}</td>

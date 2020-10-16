@@ -101,13 +101,25 @@ def order_list(request):
         order_list = Order.objects.all().order_by('id')
         context = {'order_list': order_list}
     return render(request, 'order/order_list.html', context)
-    # model = Order
-    # template_name = 'order/order_list.html'
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['order'] = Order.objects.all().order_by('-id')
-    #     return context
+
+def order_detail(request, order_id):
+    if request.method == 'GET':
+        order = Order.objects.get(id=order_id)
+        customer = Customer.objects.get(id=order.customer.id)
+        if Delivery.objects.filter(order=order_id):
+            delivery = Delivery.objects.get(order=order_id)
+            context = {
+                'order': order,
+                'customer': customer,
+                'delivery': delivery
+            }
+            return render(request, 'order/order_detail.html', context)
+        else:
+            context = {
+                'order': order,
+                'customer': customer,
+            }
+            return render(request, 'order/order_detail.html', context)
 
 # Delivery views
 @login_required(login_url='login')
